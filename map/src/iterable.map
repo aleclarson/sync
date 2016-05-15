@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "iterable.js",
+  "sourceRoot": "../../src",
+  "sources": [
+    "iterable.coffee"
+  ],
+  "names": [],
+  "mappings": "AACA,IAAA;;AAAE,OAAS,OAAA,CAAQ,YAAR,EAAT;;AAEF,MAAM,CAAC,OAAP,GAAiB,CACf,KADe,EAEf,IAAA,CAAK,MAAL,CAFe,EAGf,IAHe"
+}

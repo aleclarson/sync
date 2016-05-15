@@ -1,0 +1,8 @@
+{
+  "name": "sync",
+  "version": "1.0.0",
+  "main": "./js/src/index",
+  "dependencies": {
+    "type-utils": "aleclarson/type-utils#1.0.0"
+  }
+}
