@@ -1,6 +1,6 @@
 var assertType, each;
 
-assertType = require("type-utils").assertType;
+assertType = require("assertType");
 
 each = require("./each");
 

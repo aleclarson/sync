@@ -1,8 +1,14 @@
 {
   "name": "sync",
   "version": "1.0.0",
-  "main": "./js/src/index",
+  "main": "js/src/index",
+  "lotus": {
+    "plugins": [
+      "lotus-coffee"
+    ]
+  },
   "dependencies": {
-    "type-utils": "aleclarson/type-utils#1.0.0"
+    "PureObject": "aleclarson/PureObject#1.0.0",
+    "assertType": "aleclarson/assertType#1.0.0"
   }
 }

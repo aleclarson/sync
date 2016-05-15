@@ -1,7 +1,7 @@
-var Kind;
+var PureObject;
 
-Kind = require("type-utils").Kind;
+PureObject = require("PureObject");
 
-module.exports = [Array, Kind(Object), null];
+module.exports = [Array, Object, PureObject];
 
 //# sourceMappingURL=../../map/src/iterable.map

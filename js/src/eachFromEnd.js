@@ -1,6 +1,6 @@
 var Iterable, assertType;
 
-assertType = require("type-utils").assertType;
+assertType = require("assertType");
 
 Iterable = require("./iterable");
 

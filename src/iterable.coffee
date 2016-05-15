@@ -1,8 +1,4 @@
 
-{ Kind } = require "type-utils"
+PureObject = require "PureObject"
 
-module.exports = [
-  Array
-  Kind Object
-  null
-]
+module.exports = [ Array, Object, PureObject ]

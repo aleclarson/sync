@@ -1,6 +1,6 @@
 var assertType;
 
-assertType = require("type-utils").assertType;
+assertType = require("assertType");
 
 module.exports = function(n, iterator) {
   var index;

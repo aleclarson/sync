@@ -1,7 +1,6 @@
 
-{ isType
-  isKind
-  assertType } = require "type-utils"
+PureObject = require "PureObject"
+assertType = require "assertType"
 
 Iterable = require "./iterable"
 
@@ -19,7 +18,7 @@ module.exports = (obj, iterator) ->
 
   else
 
-    if isType obj, null
+    if PureObject.test obj
       result = Object.create null
 
     else

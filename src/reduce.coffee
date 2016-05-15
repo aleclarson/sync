@@ -1,5 +1,5 @@
 
-{ assertType } = require "type-utils"
+assertType = require "assertType"
 
 each = require "./each"
 

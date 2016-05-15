@@ -1,6 +1,8 @@
-var Iterable, assertType, isType, ref;
+var Iterable, PureObject, assertType;
 
-ref = require("type-utils"), isType = ref.isType, assertType = ref.assertType;
+PureObject = require("PureObject");
+
+assertType = require("assertType");
 
 Iterable = require("./iterable");
 
@@ -18,7 +20,7 @@ module.exports = function(obj, iterator) {
       result.push(value);
     }
   } else {
-    if (isType(obj, null)) {
+    if (PureObject.test(obj)) {
       result = Object.create(null);
     } else {
       result = {};
