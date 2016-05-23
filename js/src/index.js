@@ -1,4 +1,5 @@
 module.exports = {
+  keys: require("./keys"),
   each: require("./each"),
   eachFromEnd: require("./eachFromEnd"),
   filter: require("./filter"),
