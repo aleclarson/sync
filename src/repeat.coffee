@@ -1,15 +1,12 @@
 
 assertType = require "assertType"
 
-module.exports = (n, iterator) ->
+module.exports = (maxIterations, iterator) ->
 
-  assertType n, Number
+  assertType maxIterations, Number
   assertType iterator, Function
 
-  index = 0
-
-  while index < n
-    iterator index
-    index += 1
-
+  index = -1
+  while ++index < maxIterations
+    iterator index, maxIterations
   return

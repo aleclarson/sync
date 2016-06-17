@@ -2,14 +2,13 @@ var assertType;
 
 assertType = require("assertType");
 
-module.exports = function(n, iterator) {
+module.exports = function(maxIterations, iterator) {
   var index;
-  assertType(n, Number);
+  assertType(maxIterations, Number);
   assertType(iterator, Function);
-  index = 0;
-  while (index < n) {
-    iterator(index);
-    index += 1;
+  index = -1;
+  while (++index < maxIterations) {
+    iterator(index, maxIterations);
   }
 };
 
