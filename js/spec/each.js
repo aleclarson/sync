@@ -38,19 +38,13 @@ describe("each()", function() {
     expect(spy.calls.argsFor(0)).toContain(0);
     return expect(spy.calls.argsFor(1)).toContain(1);
   });
-  it("supports class instances", function() {
-    var MyClass, obj, spy;
-    spy = jasmine.createSpy();
+  it("does NOT support class instances", function() {
+    var MyClass, obj;
     MyClass = function() {};
-    MyClass.prototype.foo = spy;
     obj = new MyClass;
-    obj.bar = spy;
-    each(obj, function(value, key) {
-      return value(key);
-    });
-    expect(spy.calls.count()).toBe(2);
-    expect(spy.calls.argsFor(0)).toContain("bar");
-    return expect(spy.calls.argsFor(1)).toContain("foo");
+    return expect(function() {
+      return each(obj, emptyFunction);
+    }).toThrowError("Expected an Array, Object, or PureObject!");
   });
   return it("supports null objects", function() {
     var obj, spy;

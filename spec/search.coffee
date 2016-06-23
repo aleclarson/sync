@@ -36,22 +36,11 @@ describe "search()", ->
     expect spy.calls.argsFor 1
       .toContain "bar"
 
-  it "supports class instances", ->
+  it "does NOT support class instances", ->
     MyClass = ->
-    MyClass::foo = 2
     obj = new MyClass
-    obj.bar = 0
-    obj.win = 1
-    spy = jasmine.createSpy()
-    search obj, (value, key) ->
-      spy key
-      value isnt 1
-    expect spy.calls.count()
-      .toBe 2
-    expect spy.calls.argsFor 0
-      .toContain "bar"
-    expect spy.calls.argsFor 1
-      .toContain "win"
+    expect -> search obj, emptyFunction
+      .toThrowError "Expected an Array, Object, or PureObject!"
 
   it "supports null objects", ->
     obj = Object.create null

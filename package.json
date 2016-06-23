@@ -10,5 +10,8 @@
   "dependencies": {
     "PureObject": "aleclarson/PureObject#1.0.0",
     "assertType": "aleclarson/assertType#1.0.0"
+  },
+  "devDependencies": {
+    "getType": "aleclarson/getType#1.0.0"
   }
 }

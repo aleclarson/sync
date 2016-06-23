@@ -1,4 +1,8 @@
-var map;
+var PureObject, getType, map;
+
+PureObject = require("PureObject");
+
+getType = require("getType");
 
 map = require("../src/map");
 
@@ -36,18 +40,13 @@ describe("map()", function() {
     expect(result[0]).toBe(0);
     return expect(result[1]).toBe(1);
   });
-  it("supports class instances", function() {
-    var MyClass, obj, result;
+  it("does NOT support class instances", function() {
+    var MyClass, obj;
     MyClass = function() {};
-    MyClass.prototype.foo = null;
     obj = new MyClass;
-    obj.bar = null;
-    result = map(obj, function(value, key) {
-      return key;
-    });
-    expect(getType(result)).toBe(Object);
-    expect(result.foo).toBe("foo");
-    return expect(result.bar).toBe("bar");
+    return expect(function() {
+      return map(obj, emptyFunction);
+    }).toThrowError("Expected an Array, Object, or PureObject!");
   });
   it("supports null objects", function() {
     var obj, result;
@@ -57,7 +56,7 @@ describe("map()", function() {
     result = map(obj, function(value, key) {
       return key;
     });
-    expect(getType(result)).toBe(null);
+    expect(getType(result)).toBe(PureObject);
     expect(result.foo).toBe("foo");
     return expect(result.bar).toBe("bar");
   });

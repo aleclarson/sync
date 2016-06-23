@@ -49,15 +49,11 @@ describe "reduce()", ->
     expect result
       .toBe "foo0bar1"
 
-  it "supports class instances", ->
+  it "does NOT support class instances", ->
     MyClass = ->
-    MyClass::foo = 0
     obj = new MyClass
-    obj.bar = 1
-    result = reduce obj, "", (result, value, key) ->
-      result + key + value
-    expect result
-      .toBe "bar1foo0"
+    expect -> reduce obj, emptyFunction
+      .toThrowError "Expected an Array, Object, or PureObject!"
 
   it "supports null objects", ->
     obj = Object.create null

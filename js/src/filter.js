@@ -22,7 +22,7 @@ filterIndexes = function(arr, iterator) {
   length = arr.length;
   while (++index < length) {
     value = arr[index];
-    if (!iterator(value, index, obj)) {
+    if (!iterator(value, index, arr)) {
       continue;
     }
     results.push(value);

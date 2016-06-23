@@ -20,7 +20,7 @@ filterIndexes = (arr, iterator) ->
   length = arr.length
   while ++index < length
     value = arr[index]
-    continue if not iterator value, index, obj
+    continue if not iterator value, index, arr
     results.push value
 
   return results

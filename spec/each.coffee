@@ -34,20 +34,11 @@ describe "each()", ->
     expect spy.calls.argsFor 1
       .toContain 1
 
-  it "supports class instances", ->
-    spy = jasmine.createSpy()
+  it "does NOT support class instances", ->
     MyClass = ->
-    MyClass::foo = spy
     obj = new MyClass
-    obj.bar = spy
-    each obj, (value, key) ->
-      value key
-    expect spy.calls.count()
-      .toBe 2
-    expect spy.calls.argsFor 0
-      .toContain "bar"
-    expect spy.calls.argsFor 1
-      .toContain "foo"
+    expect -> each obj, emptyFunction
+      .toThrowError "Expected an Array, Object, or PureObject!"
 
   it "supports null objects", ->
     spy = jasmine.createSpy()

@@ -1,4 +1,7 @@
 
+PureObject = require "PureObject"
+getType = require "getType"
+
 map = require "../src/map"
 
 describe "map()", ->
@@ -32,19 +35,11 @@ describe "map()", ->
     expect result[1]
       .toBe 1
 
-  it "supports class instances", ->
+  it "does NOT support class instances", ->
     MyClass = ->
-    MyClass::foo = null
     obj = new MyClass
-    obj.bar = null
-    result = map obj, (value, key) ->
-      key
-    expect getType result
-      .toBe Object
-    expect result.foo
-      .toBe "foo"
-    expect result.bar
-      .toBe "bar"
+    expect -> map obj, emptyFunction
+      .toThrowError "Expected an Array, Object, or PureObject!"
 
   it "supports null objects", ->
     obj = Object.create null
@@ -53,7 +48,7 @@ describe "map()", ->
     result = map obj, (value, key) ->
       key
     expect getType result
-      .toBe null
+      .toBe PureObject
     expect result.foo
       .toBe "foo"
     expect result.bar

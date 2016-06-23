@@ -1,4 +1,7 @@
 
+PureObject = require "PureObject"
+getType = require "getType"
+
 filter = require "../src/filter"
 
 describe "filter()", ->
@@ -40,23 +43,11 @@ describe "filter()", ->
     expect spy.calls.argsFor 1
       .toContain 1
 
-  it "supports class instances", ->
-    spy = jasmine.createSpy()
+  it "does NOT support class instances", ->
     MyClass = ->
-    MyClass::foo = spy
     obj = new MyClass
-    obj.bar = spy
-    result = filter obj, (value, key) ->
-      value key
-      yes
-    expect getType result
-      .toBe Object
-    expect spy.calls.count()
-      .toBe 2
-    expect spy.calls.argsFor 0
-      .toContain "bar"
-    expect spy.calls.argsFor 1
-      .toContain "foo"
+    expect -> filter obj, emptyFunction
+      .toThrowError "Expected an Array, Object, or PureObject!"
 
   it "supports null objects", ->
     spy = jasmine.createSpy()
@@ -67,7 +58,7 @@ describe "filter()", ->
       value key
       yes
     expect getType result
-      .toBe null
+      .toBe PureObject
     expect spy.calls.count()
       .toBe 2
     expect spy.calls.argsFor 0

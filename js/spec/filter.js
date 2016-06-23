@@ -1,4 +1,8 @@
-var filter;
+var PureObject, filter, getType;
+
+PureObject = require("PureObject");
+
+getType = require("getType");
 
 filter = require("../src/filter");
 
@@ -42,21 +46,13 @@ describe("filter()", function() {
     expect(spy.calls.argsFor(0)).toContain(0);
     return expect(spy.calls.argsFor(1)).toContain(1);
   });
-  it("supports class instances", function() {
-    var MyClass, obj, result, spy;
-    spy = jasmine.createSpy();
+  it("does NOT support class instances", function() {
+    var MyClass, obj;
     MyClass = function() {};
-    MyClass.prototype.foo = spy;
     obj = new MyClass;
-    obj.bar = spy;
-    result = filter(obj, function(value, key) {
-      value(key);
-      return true;
-    });
-    expect(getType(result)).toBe(Object);
-    expect(spy.calls.count()).toBe(2);
-    expect(spy.calls.argsFor(0)).toContain("bar");
-    return expect(spy.calls.argsFor(1)).toContain("foo");
+    return expect(function() {
+      return filter(obj, emptyFunction);
+    }).toThrowError("Expected an Array, Object, or PureObject!");
   });
   it("supports null objects", function() {
     var obj, result, spy;
@@ -68,7 +64,7 @@ describe("filter()", function() {
       value(key);
       return true;
     });
-    expect(getType(result)).toBe(null);
+    expect(getType(result)).toBe(PureObject);
     expect(spy.calls.count()).toBe(2);
     expect(spy.calls.argsFor(0)).toContain("foo");
     return expect(spy.calls.argsFor(1)).toContain("bar");

@@ -65,16 +65,13 @@ describe("reduce()", function() {
     });
     return expect(result).toBe("foo0bar1");
   });
-  it("supports class instances", function() {
-    var MyClass, obj, result;
+  it("does NOT support class instances", function() {
+    var MyClass, obj;
     MyClass = function() {};
-    MyClass.prototype.foo = 0;
     obj = new MyClass;
-    obj.bar = 1;
-    result = reduce(obj, "", function(result, value, key) {
-      return result + key + value;
-    });
-    return expect(result).toBe("bar1foo0");
+    return expect(function() {
+      return reduce(obj, emptyFunction);
+    }).toThrowError("Expected an Array, Object, or PureObject!");
   });
   return it("supports null objects", function() {
     var obj, result;

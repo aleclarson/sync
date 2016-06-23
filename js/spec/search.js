@@ -41,21 +41,13 @@ describe("search()", function() {
     expect(spy.calls.argsFor(0)).toContain("foo");
     return expect(spy.calls.argsFor(1)).toContain("bar");
   });
-  it("supports class instances", function() {
-    var MyClass, obj, spy;
+  it("does NOT support class instances", function() {
+    var MyClass, obj;
     MyClass = function() {};
-    MyClass.prototype.foo = 2;
     obj = new MyClass;
-    obj.bar = 0;
-    obj.win = 1;
-    spy = jasmine.createSpy();
-    search(obj, function(value, key) {
-      spy(key);
-      return value !== 1;
-    });
-    expect(spy.calls.count()).toBe(2);
-    expect(spy.calls.argsFor(0)).toContain("bar");
-    return expect(spy.calls.argsFor(1)).toContain("win");
+    return expect(function() {
+      return search(obj, emptyFunction);
+    }).toThrowError("Expected an Array, Object, or PureObject!");
   });
   return it("supports null objects", function() {
     var obj, spy;
