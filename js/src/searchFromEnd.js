@@ -1,28 +1,36 @@
-var Iterable, assertType;
+var Iterable, assertType, searchIndexes, searchKeys;
 
 assertType = require("assertType");
 
 Iterable = require("./iterable");
 
 module.exports = function(obj, iterator) {
-  var index, key, keys;
   assertType(obj, Iterable);
   assertType(iterator, Function);
   if (Array.isArray(obj)) {
-    index = obj.length;
-    while (--index >= 0) {
-      if (!iterator(obj[index], index, obj)) {
-        break;
-      }
+    return searchIndexes(obj, iterator);
+  }
+  return searchKeys(obj, iterator);
+};
+
+searchIndexes = function(arr, iterator) {
+  var index;
+  index = arr.length;
+  while (--index >= 0) {
+    if (!iterator(arr[index], index, arr)) {
+      break;
     }
-  } else {
-    keys = Object.keys(obj);
-    index = keys.length;
-    while (--index >= 0) {
-      key = keys[index];
-      if (!iterator(obj[key], key, obj)) {
-        break;
-      }
+  }
+};
+
+searchKeys = function(obj, iterator) {
+  var index, key, keys;
+  keys = Object.keys(obj);
+  index = keys.length;
+  while (--index >= 0) {
+    key = keys[index];
+    if (!iterator(obj[key], key, obj)) {
+      break;
     }
   }
 };

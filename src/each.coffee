@@ -8,12 +8,17 @@ module.exports =  (obj, iterator) ->
   assertType obj, Iterable
   assertType iterator, Function
 
-  if Array.isArray obj
-    for value, index in obj
-      iterator value, index, obj
+  return eachIndex obj, iterator if Array.isArray obj
+  return eachKey obj, iterator
 
-  else
-    for key, value of obj
-      iterator value, key, obj
+eachIndex = (arr, iterator) ->
+  index = -1
+  length = arr.length
+  while ++index < length
+    iterator arr[index], index, arr
+  return
 
+eachKey = (obj, iterator) ->
+  for key, value of obj
+    iterator value, key, obj
   return

@@ -9,22 +9,27 @@ module.exports = (obj, iterator) ->
   assertType obj, Iterable
   assertType iterator, Function
 
-  if Array.isArray obj
+  return mapIndexes obj, iterator if Array.isArray obj
+  return mapKeys obj, iterator
 
-    result = []
+mapIndexes = (arr, iterator) ->
 
-    for value, index in obj
-      result.push iterator value, index, obj
+  results = []
 
-  else
+  index = -1
+  length = arr.length
+  while ++index < length
+    results.push iterator arr[index], index, arr
 
-    if PureObject.test obj
-      result = Object.create null
+  return results
 
-    else
-      result = {}
+mapKeys = (obj, iterator) ->
 
-    for key, value of obj
-      result[key] = iterator value, key, obj
+  if PureObject.test obj
+    results = Object.create null
+  else results = {}
 
-  return result
+  for key, value of obj
+    results[key] = iterator value, key, obj
+
+  return results

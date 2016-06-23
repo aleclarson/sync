@@ -9,24 +9,30 @@ module.exports = (obj, iterator) ->
   assertType obj, Iterable
   assertType iterator, Function
 
-  if Array.isArray obj
+  return filterIndexes obj, iterator if Array.isArray obj
+  return filterKeys obj, iterator
 
-    result = []
+filterIndexes = (arr, iterator) ->
 
-    for value, index in obj
-      continue unless iterator value, index, obj
-      result.push value
+  results = []
 
-  else
+  index = -1
+  length = arr.length
+  while ++index < length
+    value = arr[index]
+    continue if not iterator value, index, obj
+    results.push value
 
-    if PureObject.test obj
-      result = Object.create null
+  return results
 
-    else
-      result = {}
+filterKeys = (obj, iterator) ->
 
-    for key, value of obj
-      continue unless iterator value, key, obj
-      result[key] = value
+  if PureObject.test obj
+    results = Object.create null
+  else results = {}
 
-  return result
+  for key, value of obj
+    continue if not iterator value, key, obj
+    results[key] = value
+
+  return results

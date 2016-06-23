@@ -8,16 +8,19 @@ module.exports = (obj, iterator) ->
   assertType obj, Iterable
   assertType iterator, Function
 
-  if Array.isArray obj
-    index = obj.length
-    while --index >= 0
-      break unless iterator obj[index], index, obj
+  return searchIndexes obj, iterator if Array.isArray obj
+  return searchKeys obj, iterator
 
-  else
-    keys = Object.keys obj
-    index = keys.length
-    while --index >= 0
-      key = keys[index]
-      break unless iterator obj[key], key, obj
+searchIndexes = (arr, iterator) ->
+  index = arr.length
+  while --index >= 0
+    break if not iterator arr[index], index, arr
+  return
 
+searchKeys = (obj, iterator) ->
+  keys = Object.keys obj
+  index = keys.length
+  while --index >= 0
+    key = keys[index]
+    break if not iterator obj[key], key, obj
   return
