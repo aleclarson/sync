@@ -9,7 +9,7 @@ module.exports =
 
   filter: require "./filter"
 
-  map: require "./map"
+  map: require "./mapEach"
 
   reduce: require "./reduce"
 

@@ -40,4 +40,4 @@ mapKeys = function(obj, iterator) {
   return results;
 };
 
-//# sourceMappingURL=map/map.map
+//# sourceMappingURL=map/mapEach.map
