@@ -1,4 +1,4 @@
-var Iterable, PureObject, assertType, mapIndexes, mapKeys;
+var Iterable, PureObject, assertType, filterIndexes, filterKeys;
 
 PureObject = require("PureObject");
 
@@ -10,23 +10,27 @@ module.exports = function(obj, iterator) {
   assertType(obj, Iterable);
   assertType(iterator, Function);
   if (Array.isArray(obj)) {
-    return mapIndexes(obj, iterator);
+    return filterIndexes(obj, iterator);
   }
-  return mapKeys(obj, iterator);
+  return filterKeys(obj, iterator);
 };
 
-mapIndexes = function(arr, iterator) {
-  var index, length, results;
+filterIndexes = function(arr, iterator) {
+  var index, length, results, value;
   results = [];
   index = -1;
   length = arr.length;
   while (++index < length) {
-    results.push(iterator(arr[index], index, arr));
+    value = arr[index];
+    if (!iterator(value, index, arr)) {
+      continue;
+    }
+    results.push(value);
   }
   return results;
 };
 
-mapKeys = function(obj, iterator) {
+filterKeys = function(obj, iterator) {
   var key, results, value;
   if (PureObject.test(obj)) {
     results = Object.create(null);
@@ -35,9 +39,12 @@ mapKeys = function(obj, iterator) {
   }
   for (key in obj) {
     value = obj[key];
-    results[key] = iterator(value, key, obj);
+    if (!iterator(value, key, obj)) {
+      continue;
+    }
+    results[key] = value;
   }
   return results;
 };
 
-//# sourceMappingURL=../../map/src/map.map
+//# sourceMappingURL=map/filter.map

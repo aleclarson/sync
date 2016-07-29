@@ -14,21 +14,20 @@ module.exports = function(obj, iterator) {
 };
 
 eachIndex = function(arr, iterator) {
-  var index;
-  index = arr.length;
-  while (--index >= 0) {
+  var index, length;
+  index = -1;
+  length = arr.length;
+  while (++index < length) {
     iterator(arr[index], index, arr);
   }
 };
 
 eachKey = function(obj, iterator) {
-  var index, key, keys;
-  keys = Object.keys(obj);
-  index = keys.length;
-  while (--index >= 0) {
-    key = keys[index];
-    iterator(obj[key], key, obj);
+  var key, value;
+  for (key in obj) {
+    value = obj[key];
+    iterator(value, key, obj);
   }
 };
 
-//# sourceMappingURL=../../map/src/eachFromEnd.map
+//# sourceMappingURL=map/each.map

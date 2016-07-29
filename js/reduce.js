@@ -16,4 +16,4 @@ module.exports = function(obj, result, iterator) {
   return result;
 };
 
-//# sourceMappingURL=../../map/src/reduce.map
+//# sourceMappingURL=map/reduce.map

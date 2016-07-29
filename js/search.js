@@ -14,9 +14,10 @@ module.exports = function(obj, iterator) {
 };
 
 searchIndexes = function(arr, iterator) {
-  var index;
-  index = arr.length;
-  while (--index >= 0) {
+  var index, length;
+  index = -1;
+  length = arr.length;
+  while (++index < length) {
     if (!iterator(arr[index], index, arr)) {
       break;
     }
@@ -24,15 +25,13 @@ searchIndexes = function(arr, iterator) {
 };
 
 searchKeys = function(obj, iterator) {
-  var index, key, keys;
-  keys = Object.keys(obj);
-  index = keys.length;
-  while (--index >= 0) {
-    key = keys[index];
-    if (!iterator(obj[key], key, obj)) {
+  var key, value;
+  for (key in obj) {
+    value = obj[key];
+    if (!iterator(value, key, obj)) {
       break;
     }
   }
 };
 
-//# sourceMappingURL=../../map/src/searchFromEnd.map
+//# sourceMappingURL=map/search.map

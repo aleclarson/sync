@@ -10,4 +10,4 @@ module.exports = {
   searchFromEnd: require("./searchFromEnd")
 };
 
-//# sourceMappingURL=../../map/src/index.map
+//# sourceMappingURL=map/index.map
