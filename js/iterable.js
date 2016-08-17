@@ -1,7 +1,9 @@
-var PureObject;
+var PureObject, Typle;
 
 PureObject = require("PureObject");
 
-module.exports = [Array, Object, PureObject];
+Typle = require("Typle");
+
+module.exports = Typle([Array, Object, PureObject]);
 
 //# sourceMappingURL=map/iterable.map
