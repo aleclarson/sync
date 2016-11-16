@@ -1,4 +1,5 @@
 
 PureObject = require "PureObject"
+Typle = require "Typle"
 
-module.exports = [ Array, Object, PureObject ]
+module.exports = Typle [ Array, Object, PureObject ]
