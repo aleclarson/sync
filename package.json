@@ -10,9 +10,9 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "PureObject": "aleclarson/PureObject#1.0.0",
-    "Typle": "aleclarson/Typle#1.0.0",
-    "assertType": "aleclarson/assertType#2.0.0"
+    "PureObject": "aleclarson/PureObject#1.0.1",
+    "Typle": "aleclarson/Typle#1.0.1",
+    "assertType": "aleclarson/assertType#2.0.1"
   },
   "devDependencies": {
     "getType": "aleclarson/getType#1.0.0"
