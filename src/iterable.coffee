@@ -1,5 +1,5 @@
 
 PureObject = require "PureObject"
-Typle = require "Typle"
+Either = require "Either"
 
-module.exports = Typle [ Array, Object, PureObject ]
+module.exports = Either Array, Object, PureObject
