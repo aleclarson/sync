@@ -1,0 +1,10 @@
+{
+  "name": "sync",
+  "version": "1.0.3",
+  "main": "js/index",
+  "dependencies": {
+    "Either": "aleclarson/Either#1.0.2",
+    "PureObject": "aleclarson/PureObject#1.0.2",
+    "assertType": "aleclarson/assertType#2.0.2"
+  }
+}
