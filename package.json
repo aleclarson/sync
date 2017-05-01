@@ -1,6 +1,6 @@
 {
   "name": "sync",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "js/index",
   "plugins": [
     "lotus-coffee"
@@ -10,9 +10,9 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "Either": "aleclarson/Either#1.0.0",
-    "PureObject": "aleclarson/PureObject#1.0.1",
-    "assertType": "aleclarson/assertType#2.0.1"
+    "Either": "aleclarson/Either#1.0.2",
+    "PureObject": "aleclarson/PureObject#1.0.2",
+    "assertType": "aleclarson/assertType#2.0.2"
   },
   "devDependencies": {
     "getType": "aleclarson/getType#1.0.0"
